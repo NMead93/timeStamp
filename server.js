@@ -1,9 +1,21 @@
 var express = require("express");
 var app = express();
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+var moment = require('moment');
+
+app.get("/:query", function(req, res) {
+    var unixOrStr = req.params.query
+    
+    if (isNaN(unixOrStr)) {
+        var date = new Date(unixOrStr * 1000)
+        var convertDate = moment(date).format('MMMM Do YYYY, h:mm:ss a')
+        console.log(unixOrStr)
+        console.log(date)
+        console.log(convertDate)
+    }
+    
+    res.send(dateObj)
+})
 
 app.listen(8080, function () {
-  console.log('Example app listening on port 3000!');
+    console.log('Timestamp app listening on port 8080!');
 });
